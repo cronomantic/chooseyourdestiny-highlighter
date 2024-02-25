@@ -1,0 +1,25 @@
+{
+  "name": "chooseyourdestiny-highlighter",
+  "displayName": "ChooseYourDestiny Highlighter",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "cyd",
+      "aliases": ["ChooseYourDestiny", "cyd"],
+      "extensions": [".cyd"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "cyd",
+      "scopeName": "source.cyd",
+      "path": "./syntaxes/cyd.tmLanguage.json"
+    }]
+  }
+}
