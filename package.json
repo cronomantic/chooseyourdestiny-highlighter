@@ -1,12 +1,16 @@
 {
   "name": "chooseyourdestiny-highlighter",
-  "displayName": "ChooseYourDestiny Highlighter",
-  "description": "",
+  "displayName": "ChooseYourDestiny Syntax Highlighter",
+  "description": "Syntax Highlighter for ChooseYourDestiny CYOA creation suit.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.86.0"
   },
-  "categories": [
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cronomantic/chooseyourdestiny-highlighter"
+  },
+    "categories": [
     "Programming Languages"
   ],
   "contributes": {
