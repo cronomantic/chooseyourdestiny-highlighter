@@ -66,7 +66,7 @@
 			}
 		},
 		"keywords": {
-			"name": "keyword.control.cyd",
+			"name": "keyword.cyd",
 			"match": "(?i)\\b(END|RETURN|IF|THEN|AND|OR|NOT|INK|PAPER|BORDER|AT|PRINT|MARGINS|PICTURE|DISPLAY|RANDOM|RANDOMIZE|CENTER|OPTION|WAITKEY|INKEY|WAIT|PAUSE|CHOOSE|TYPERATE|CLEAR|PAGEPAUSE|CHAR|TAB|BRIGHT|FLASH|SFX|TRACK|PLAY|LOOP|REPCHAR)\\b"
 		},
 		"operands": {
@@ -74,15 +74,20 @@
 			"match": "(?i)\\-|\\+|<=|>=|<>|<|>|=|!|\\||&|\\b(AND|OR|NOT)\\b"
 		},
 		"short_label": {
-			"name": "variable.name.cyd",
-			"match": "#[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b"
+			"name": "variable.other.cyd",
+			"match": "(#)[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.operator.new"
+				}
+			}
 		},
 		"label": {
-			"name": "variable.name.cyd",
+			"name": "variable.other.cyd",
 			"match": "(?i)(LABEL\\s*)([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b",
 			"captures": {
 				"1": {
-					"name": "keyword.control.cyd"
+					"name": "keyword.operator.new"
 				}
 			}
 		},
@@ -97,7 +102,7 @@
 		},
 		"gosub": {
 			"name": "variable.name.cyd",
-			"match": "(?i)(GOTO\\s*)([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b",
+			"match": "(?i)(GOSUB\\s*)([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b",
 			"captures": {
 				"1": {
 					"name": "keyword.control.cyd"
@@ -109,10 +114,10 @@
 			"match": "(?i)(SET\\s*)([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)(\\s*TO)\\b",
 			"captures": {
 				"1": {
-					"name": "keyword.control.cyd"
+					"name": "keyword.cyd"
 				},
 				"3": {
-					"name": "keyword.control.cyd"
+					"name": "keyword.cyd"
 				}
 			}
 		},
@@ -121,10 +126,10 @@
 			"match": "(?i)(DECLARE\\s*)([0-9][0-9]*?)(\\s*AS\\s*)([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b",
 			"captures": {
 				"1": {
-					"name": "keyword.control.cyd"
+					"name": "keyword.cyd"
 				},
 				"3": {
-					"name": "keyword.control.cyd"
+					"name": "keyword.cyd"
 				}
 			}
 		},
