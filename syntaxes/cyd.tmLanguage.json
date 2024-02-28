@@ -3,29 +3,134 @@
 	"name": "ChooseYourDestiny",
 	"patterns": [
 		{
-			"include": "#keywords"
+			"include": "#code"
 		},
 		{
-			"include": "#strings"
+			"include": "#text"
 		}
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.cyd",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+		"text": {
+			"name": "string.other.cyd"
 		},
-		"strings": {
-			"name": "string.quoted.double.cyd",
-			"begin": "\"",
-			"end": "\"",
+		"code": {
+			"name": "keyword.other.unit.cyd",
+			"begin": "\\[\\[",
+			"end": "\\]\\]",
+			"captures": {
+				"0": {
+					"name": "punctuation.definition.cyd"
+				}
+			},
 			"patterns": [
 				{
-					"name": "constant.character.escape.cyd",
-					"match": "\\\\."
+					"include": "#comments"
+				},
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#operands"
+				},
+				{
+					"include": "#indirection"
+				},
+				{
+					"include": "#label"
+				},
+				{
+					"include": "#goto"
+				},
+				{
+					"include": "#gosub"
+				},
+				{
+					"include": "#set_to"
+				},
+				{
+					"include": "#declare_as"
+				},
+				{
+					"include": "#short_label"
 				}
 			]
+		},
+		"comments": {
+			"name": "comment.block.cyd",
+			"begin": "/\\*",
+			"end": "\\*/",
+			"captures": {
+				"0": {
+					"name": "punctuation.definition.comment.cyd"
+				}
+			}
+		},
+		"keywords": {
+			"name": "keyword.control.cyd",
+			"match": "(?i)\\b(END|RETURN|IF|THEN|AND|OR|NOT|INK|PAPER|BORDER|AT|PRINT|MARGINS|PICTURE|DISPLAY|RANDOM|RANDOMIZE|CENTER|OPTION|WAITKEY|INKEY|WAIT|PAUSE|CHOOSE|TYPERATE|CLEAR|PAGEPAUSE|CHAR|TAB|BRIGHT|FLASH|SFX|TRACK|PLAY|LOOP|REPCHAR)\\b"
+		},
+		"operands": {
+			"name": "keyword.operator.cyd",
+			"match": "(?i)\\-|\\+|<=|>=|<>|<|>|=|!|\\||&|\\b(AND|OR|NOT)\\b"
+		},
+		"short_label": {
+			"name": "variable.name.cyd",
+			"match": "#[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b"
+		},
+		"label": {
+			"name": "variable.name.cyd",
+			"match": "(?i)(LABEL\\s*)([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.control.cyd"
+				}
+			}
+		},
+		"goto": {
+			"name": "variable.name.cyd",
+			"match": "(?i)(GOTO\\s*)([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.control.cyd"
+				}
+			}
+		},
+		"gosub": {
+			"name": "variable.name.cyd",
+			"match": "(?i)(GOTO\\s*)([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.control.cyd"
+				}
+			}
+		},
+		"set_to": {
+			"name": "variable.name.cyd",
+			"match": "(?i)(SET\\s*)([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)(\\s*TO)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.control.cyd"
+				},
+				"3": {
+					"name": "keyword.control.cyd"
+				}
+			}
+		},
+		"declare_as": {
+			"name": "variable.name.cyd",
+			"match": "(?i)(DECLARE\\s*)([0-9][0-9]*?)(\\s*AS\\s*)([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.control.cyd"
+				},
+				"3": {
+					"name": "keyword.control.cyd"
+				}
+			}
+		},
+		"indirection": {
+			"name": "variable.name.cyd",
+			"match": "@[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b"
 		}
 	},
 	"scopeName": "source.cyd"
