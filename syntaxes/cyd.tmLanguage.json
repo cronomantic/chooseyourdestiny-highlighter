@@ -121,6 +121,18 @@
 				}
 			}
 		},
+		"set_as": {
+			"name": "variable.name.cyd",
+			"match": "(?i)(SET\\s*)(\\[?[a-zA-Z_][a-zA-Z0-9_]*?\\]?)(\\s*AS\\s*)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.cyd"
+				},
+				"3": {
+					"name": "keyword.cyd"
+				}
+			}
+		},
 		"declare_as": {
 			"name": "variable.name.cyd",
 			"match": "(?i)(DECLARE\\s*)([0-9][0-9]*?)(\\s*AS\\s*)([a-zA-Z_][a-zA-Z0-9_]*?)\\b",
