@@ -1,8 +1,9 @@
 {
   "name": "chooseyourdestiny-highlighter",
+  "publisher": "cronomantic",
   "displayName": "ChooseYourDestiny Syntax Highlighter",
   "description": "Syntax Highlighter for ChooseYourDestiny CYOA creation suit.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "engines": {
     "vscode": "^1.86.0"
   },
@@ -10,20 +11,29 @@
     "type": "git",
     "url": "git://github.com/cronomantic/chooseyourdestiny-highlighter"
   },
-    "categories": [
+  "categories": [
     "Programming Languages"
   ],
   "contributes": {
-    "languages": [{
-      "id": "cyd",
-      "aliases": ["ChooseYourDestiny", "cyd"],
-      "extensions": [".cyd"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "cyd",
-      "scopeName": "source.cyd",
-      "path": "./syntaxes/cyd.tmLanguage.json"
-    }]
+    "languages": [
+      {
+        "id": "cyd",
+        "aliases": [
+          "ChooseYourDestiny",
+          "cyd"
+        ],
+        "extensions": [
+          ".cyd"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cyd",
+        "scopeName": "source.cyd",
+        "path": "./syntaxes/cyd.tmLanguage.json"
+      }
+    ]
   }
 }

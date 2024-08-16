@@ -48,10 +48,19 @@
 					"include": "#set_to"
 				},
 				{
+					"include": "#let_to"
+				},
+				{
 					"include": "#declare_as"
 				},
 				{
 					"include": "#short_label"
+				},
+				{
+					"include": "#array_as"
+				},
+				{
+					"include": "#const_as"
 				}
 			]
 		},
@@ -67,7 +76,7 @@
 		},
 		"keywords": {
 			"name": "keyword.cyd",
-			"match": "(?i)\\b(END|RETURN|IF|THEN|ELSE|ENDIF|WHILE|WEND|AND|OR|NOT|INK|PAPER|BORDER|AT|PRINT|MARGINS|PICTURE|DISPLAY|RANDOM|RANDOMIZE|CENTER|OPTION|WAITKEY|INKEY|WAIT|PAUSE|CHOOSE|TYPERATE|CLEAR|PAGEPAUSE|CHAR|TAB|BRIGHT|FLASH|SFX|TRACK|PLAY|LOOP|NEWLINE|REPCHAR|MIN|MAX|POSX|POSY|BLIT|MENUCONFIG|BACKSPACE|RAMSAVE|RAMLOAD|SAVE|LOAD|SAVERESULT|FADEOUT|CHANGED|FILLATTR|PUTATTR|OPTIONSEL|OPTIONVAL|NUMOPTIONS|CLEAROPTIONS|LET|GETATTR|ELSEIF|ATTRVAL|ATTRMASK|VALUE|WINDOW|CHARSET)\\b"
+			"match": "(?i)\\b(END|RETURN|IF|THEN|ELSE|ENDIF|WHILE|WEND|AND|OR|NOT|INK|PAPER|BORDER|AT|PRINT|MARGINS|PICTURE|DISPLAY|RANDOM|RANDOMIZE|CENTER|OPTION|WAITKEY|INKEY|WAIT|PAUSE|CHOOSE|TYPERATE|CLEAR|PAGEPAUSE|CHAR|TAB|BRIGHT|FLASH|SFX|TRACK|PLAY|LOOP|NEWLINE|REPCHAR|MIN|MAX|POSX|POSY|BLIT|MENUCONFIG|BACKSPACE|RAMSAVE|RAMLOAD|SAVE|LOAD|SAVERESULT|FADEOUT|CHANGED|FILLATTR|PUTATTR|OPTIONSEL|OPTIONVAL|NUMOPTIONS|CLEAROPTIONS|LET|GETATTR|ELSEIF|ATTRVAL|ATTRMASK|VALUE|WINDOW|CHARSET|ARRAY|CONST|LASTPOS)\\b"
 		},
 		"operands": {
 			"name": "keyword.operator.cyd",
@@ -115,9 +124,6 @@
 			"captures": {
 				"1": {
 					"name": "keyword.cyd"
-				},
-				"3": {
-					"name": "keyword.cyd"
 				}
 			}
 		},
@@ -126,9 +132,6 @@
 			"match": "(?i)(SET\\s*)(\\[?[a-zA-Z_][a-zA-Z0-9_]*?\\]?)(\\s*AS\\s*)\\b",
 			"captures": {
 				"1": {
-					"name": "keyword.cyd"
-				},
-				"3": {
 					"name": "keyword.cyd"
 				}
 			}
@@ -139,9 +142,6 @@
 			"captures": {
 				"1": {
 					"name": "keyword.cyd"
-				},
-				"3": {
-					"name": "keyword.cyd"
 				}
 			}
 		},
@@ -150,9 +150,6 @@
 			"match": "(?i)(LET\\s*)(\\[?[a-zA-Z_][a-zA-Z0-9_]*?\\]?)(\\s*=\\s*)\\b",
 			"captures": {
 				"1": {
-					"name": "keyword.cyd"
-				},
-				"3": {
 					"name": "keyword.cyd"
 				}
 			}
@@ -165,6 +162,24 @@
 					"name": "keyword.cyd"
 				},
 				"3": {
+					"name": "keyword.cyd"
+				}
+			}
+		},
+		"const_as": {
+			"name": "variable.name.cyd",
+			"match": "(?i)(CONST\\s*)([a-zA-Z_][a-zA-Z0-9_]*?)(\\s*=\\s*)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.cyd"
+				}
+			}
+		},
+		"array_as": {
+			"name": "variable.name.cyd",
+			"match": "(?i)(ARRAY\\s*)([a-zA-Z_][a-zA-Z0-9_]*?)(\\s*=\\s*)\\b",
+			"captures": {
+				"1": {
 					"name": "keyword.cyd"
 				}
 			}
