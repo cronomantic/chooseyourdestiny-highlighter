@@ -3,6 +3,9 @@
 	"name": "ChooseYourDestiny",
 	"patterns": [
 		{
+			"include": "#include_directive"
+		},
+		{
 			"include": "#code"
 		},
 		{
@@ -10,6 +13,21 @@
 		}
 	],
 	"repository": {
+		"include_directive": {
+			"name": "meta.preprocessor.include.cyd",
+			"match": "(?i)^\\s*(INCLUDE)\\s+([\"'])([^\"']+)\\2",
+			"captures": {
+				"1": {
+					"name": "keyword.control.import.include.cyd"
+				},
+				"2": {
+					"name": "punctuation.definition.string.begin.cyd"
+				},
+				"3": {
+					"name": "string.quoted.other.include.cyd"
+				}
+			}
+		},
 		"text": {
 			"name": "string.other.cyd"
 		},
