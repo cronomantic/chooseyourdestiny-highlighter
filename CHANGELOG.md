@@ -4,6 +4,7 @@ All notable changes to the "chooseyourdestiny-highlighter" extension will be doc
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+<<<<<<< HEAD
 ## [2.1.0] - 2026-03-21
 
 ### Added
@@ -15,6 +16,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [2.0.0] - 2026-02-19
 
 ### Added
+=======
+## [2.0.0] - 2026-02-19
+
+### Added
+>>>>>>> 50e2e8179fbc11063d429c34b66457cb84447b2d
 - Categorized keywords into semantic groups (flow control, declarations, assignments, conditionals, loops, options/menu, display, color, sound, I/O) with distinct TextMate scopes for better theme support
 - Numeric literal highlighting: decimal, hexadecimal (`0xFF`), and binary (`0b1010`)
 - Built-in function highlighting when followed by parentheses (e.g., `INKEY()`, `RANDOM()`, `XPOS()`, `LASTPOS()`)
