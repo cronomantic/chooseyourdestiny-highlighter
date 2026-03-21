@@ -2,8 +2,9 @@
   "name": "chooseyourdestiny-highlighter",
   "publisher": "cronomantic",
   "displayName": "ChooseYourDestiny Syntax Highlighter",
-  "description": "Syntax Highlighter for ChooseYourDestiny CYOA creation suit.",
-  "version": "1.1.0",
+  "description": "Syntax Highlighter for ChooseYourDestiny CYOA creation suite.",
+  "version": "2.1.0",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.86.0"
   },
