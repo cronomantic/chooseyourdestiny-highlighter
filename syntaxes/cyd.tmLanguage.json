@@ -3,9 +3,6 @@
 	"name": "ChooseYourDestiny",
 	"patterns": [
 		{
-			"include": "#include_directive"
-		},
-		{
 			"include": "#code"
 		},
 		{
@@ -13,45 +10,29 @@
 		}
 	],
 	"repository": {
-		"include_directive": {
-			"name": "meta.preprocessor.include.cyd",
-			"match": "(?i)^\\s*(INCLUDE)\\s+([\"'])([^\"']+)\\2",
-			"captures": {
-				"1": {
-					"name": "keyword.control.import.include.cyd"
-				},
-				"2": {
-					"name": "punctuation.definition.string.begin.cyd"
-				},
-				"3": {
-					"name": "string.quoted.other.include.cyd"
-				}
-			}
-		},
 		"text": {
 			"name": "string.other.cyd"
 		},
 		"code": {
-			"name": "keyword.other.unit.cyd",
+			"name": "meta.code-block.cyd",
 			"begin": "\\[\\[",
 			"end": "\\]\\]",
-			"captures": {
+			"beginCaptures": {
 				"0": {
-					"name": "punctuation.definition.cyd"
+					"name": "punctuation.definition.block.begin.cyd"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.block.end.cyd"
 				}
 			},
 			"patterns": [
 				{
+					"include": "#include_directive"
+				},
+				{
 					"include": "#comments"
-				},
-				{
-					"include": "#keywords"
-				},
-				{
-					"include": "#operands"
-				},
-				{
-					"include": "#indirection"
 				},
 				{
 					"include": "#label"
@@ -72,139 +53,301 @@
 					"include": "#declare_as"
 				},
 				{
-					"include": "#short_label"
+					"include": "#const_as"
 				},
 				{
 					"include": "#array_as"
 				},
 				{
-					"include": "#const_as"
+					"include": "#short_label"
+				},
+				{
+					"include": "#builtin_functions"
+				},
+				{
+					"include": "#keywords_flow"
+				},
+				{
+					"include": "#keywords_declaration"
+				},
+				{
+					"include": "#keywords_assignment"
+				},
+				{
+					"include": "#keywords_conditional"
+				},
+				{
+					"include": "#keywords_loop"
+				},
+				{
+					"include": "#keywords_option"
+				},
+				{
+					"include": "#keywords_display"
+				},
+				{
+					"include": "#keywords_color"
+				},
+				{
+					"include": "#keywords_sound"
+				},
+				{
+					"include": "#keywords_io"
+				},
+				{
+					"include": "#keywords_misc"
+				},
+				{
+					"include": "#numbers"
+				},
+				{
+					"include": "#operators_compound"
+				},
+				{
+					"include": "#operators_logical"
+				},
+				{
+					"include": "#operators_comparison"
+				},
+				{
+					"include": "#operators_arithmetic"
+				},
+				{
+					"include": "#indirection"
 				}
 			]
+		},
+		"include_directive": {
+			"name": "meta.preprocessor.include.cyd",
+			"match": "(?i)\\b(INCLUDE)(\\s+)([\"'])([^\"']+)(\\3)",
+			"captures": {
+				"1": {
+					"name": "keyword.control.import.include.cyd"
+				},
+				"3": {
+					"name": "punctuation.definition.string.begin.cyd"
+				},
+				"4": {
+					"name": "string.quoted.other.include.cyd"
+				},
+				"5": {
+					"name": "punctuation.definition.string.end.cyd"
+				}
+			}
 		},
 		"comments": {
 			"name": "comment.block.cyd",
 			"begin": "/\\*",
 			"end": "\\*/",
-			"captures": {
+			"beginCaptures": {
 				"0": {
-					"name": "punctuation.definition.comment.cyd"
+					"name": "punctuation.definition.comment.begin.cyd"
 				}
-			}
-		},
-		"keywords": {
-			"name": "keyword.cyd",
-			"match": "(?i)\\b(END|RETURN|IF|THEN|ELSE|ENDIF|WHILE|WEND|AND|OR|NOT|INK|PAPER|BORDER|AT|PRINT|MARGINS|PICTURE|DISPLAY|RANDOM|RANDOMIZE|CENTER|OPTION|WAITKEY|INKEY|WAIT|PAUSE|CHOOSE|TYPERATE|CLEAR|PAGEPAUSE|CHAR|TAB|BRIGHT|FLASH|SFX|TRACK|PLAY|LOOP|NEWLINE|REPCHAR|MIN|MAX|POSX|POSY|BLIT|MENUCONFIG|BACKSPACE|RAMSAVE|RAMLOAD|SAVE|LOAD|SAVERESULT|FADEOUT|CHANGED|FILLATTR|PUTATTR|OPTIONSEL|OPTIONVAL|NUMOPTIONS|CLEAROPTIONS|LET|GETATTR|ELSEIF|ATTRVAL|ATTRMASK|VALUE|WINDOW|CHARSET|DIM|CONST|LASTPOS)\\b"
-		},
-		"operands": {
-			"name": "keyword.operator.cyd",
-			"match": "(?i)\\-|\\+|<=|>=|<>|<|>|=|!|\\||&|\\b(AND|OR|NOT)\\b"
-		},
-		"short_label": {
-			"name": "variable.other.cyd",
-			"match": "(#)[a-zA-Z_][a-zA-Z0-9_]*?\\b",
-			"captures": {
-				"1": {
-					"name": "keyword.operator.new"
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.comment.end.cyd"
 				}
 			}
 		},
 		"label": {
-			"name": "variable.other.cyd",
-			"match": "(?i)(LABEL\\s*)([a-zA-Z_][a-zA-Z0-9_]*?)\\b",
+			"match": "(?i)(LABEL)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
 			"captures": {
 				"1": {
-					"name": "keyword.operator.new"
+					"name": "keyword.control.flow.cyd"
+				},
+				"2": {
+					"name": "entity.name.label.cyd"
 				}
 			}
 		},
 		"goto": {
-			"name": "variable.name.cyd",
-			"match": "(?i)(GOTO\\s*)([a-zA-Z_][a-zA-Z0-9_]*?)\\b",
+			"match": "(?i)(GOTO)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
 			"captures": {
 				"1": {
-					"name": "keyword.control.cyd"
+					"name": "keyword.control.flow.cyd"
+				},
+				"2": {
+					"name": "variable.other.label-ref.cyd"
 				}
 			}
 		},
 		"gosub": {
-			"name": "variable.name.cyd",
-			"match": "(?i)(GOSUB\\s*)([a-zA-Z_][a-zA-Z0-9_]*?)\\b",
+			"match": "(?i)(GOSUB)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
 			"captures": {
 				"1": {
-					"name": "keyword.control.cyd"
+					"name": "keyword.control.flow.cyd"
+				},
+				"2": {
+					"name": "variable.other.label-ref.cyd"
 				}
 			}
 		},
 		"set_to": {
-			"name": "variable.name.cyd",
-			"match": "(?i)(SET\\s\\s*)(\\[?[a-zA-Z0-9_][a-zA-Z0-9_]*?\\]?)(\\s\\s*TO\\s*)\\b",
+			"match": "(?i)(SET)\\s+(\\[?[a-zA-Z0-9_]+\\]?)\\s+(TO)\\b",
 			"captures": {
 				"1": {
-					"name": "keyword.cyd"
-				}
-			}
-		},
-		"set_as": {
-			"name": "variable.name.cyd",
-			"match": "(?i)(SET\\s*)(\\[?[a-zA-Z_][a-zA-Z0-9_]*?\\]?)(\\s*AS\\s*)\\b",
-			"captures": {
-				"1": {
-					"name": "keyword.cyd"
+					"name": "keyword.operator.assignment.cyd"
+				},
+				"2": {
+					"name": "variable.name.cyd"
+				},
+				"3": {
+					"name": "keyword.operator.assignment.cyd"
 				}
 			}
 		},
 		"let_to": {
-			"name": "variable.name.cyd",
-			"match": "(?i)(LET\\s*)(\\[?[a-zA-Z0-9_][a-zA-Z0-9_]*?\\]?)(\\s*=\\s*)\\b",
+			"match": "(?i)(LET)\\s+(\\[?[a-zA-Z0-9_]+\\]?)\\s*=",
 			"captures": {
 				"1": {
-					"name": "keyword.cyd"
-				}
-			}
-		},
-		"let_as": {
-			"name": "variable.name.cyd",
-			"match": "(?i)(LET\\s*)(\\[?[a-zA-Z_][a-zA-Z0-9_]*?\\]?)(\\s*=\\s*)\\b",
-			"captures": {
-				"1": {
-					"name": "keyword.cyd"
+					"name": "keyword.operator.assignment.cyd"
+				},
+				"2": {
+					"name": "variable.name.cyd"
 				}
 			}
 		},
 		"declare_as": {
-			"name": "variable.name.cyd",
-			"match": "(?i)(DECLARE\\s*)([0-9][0-9]*?)(\\s*AS\\s*)([a-zA-Z_][a-zA-Z0-9_]*?)\\b",
+			"match": "(?i)(DECLARE)\\s+([0-9]+)\\s+(AS)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
 			"captures": {
 				"1": {
-					"name": "keyword.cyd"
+					"name": "keyword.other.declaration.cyd"
+				},
+				"2": {
+					"name": "constant.numeric.decimal.cyd"
 				},
 				"3": {
-					"name": "keyword.cyd"
+					"name": "keyword.other.declaration.cyd"
+				},
+				"4": {
+					"name": "variable.name.cyd"
 				}
 			}
 		},
 		"const_as": {
-			"name": "variable.name.cyd",
-			"match": "(?i)(CONST\\s*)([a-zA-Z_][a-zA-Z0-9_]*?)(\\s*=\\s*)\\b",
+			"match": "(?i)(CONST)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*=",
 			"captures": {
 				"1": {
-					"name": "keyword.cyd"
+					"name": "keyword.other.declaration.cyd"
+				},
+				"2": {
+					"name": "variable.name.cyd"
 				}
 			}
 		},
 		"array_as": {
-			"name": "variable.name.cyd",
-			"match": "(?i)(DIM\\s*)([a-zA-Z_][a-zA-Z0-9_]*?)(\\s*=\\s*)\\b",
+			"match": "(?i)(DIM)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(",
 			"captures": {
 				"1": {
-					"name": "keyword.cyd"
+					"name": "keyword.other.declaration.cyd"
+				},
+				"2": {
+					"name": "variable.name.cyd"
 				}
 			}
 		},
+		"short_label": {
+			"match": "(#)([a-zA-Z_][a-zA-Z0-9_]*)",
+			"captures": {
+				"1": {
+					"name": "punctuation.definition.label.cyd"
+				},
+				"2": {
+					"name": "entity.name.label.cyd"
+				}
+			}
+		},
+		"builtin_functions": {
+			"match": "(?i)\\b(INKEY|RANDOM|XPOS|YPOS|ISDISK|KEMPSTON|MIN|MAX|ATTRVAL|ATTRMASK|GETATTR|OPTIONVAL|OPTIONSEL|NUMOPTIONS|SAVERESULT|LASTPOS)(?=\\s*\\()",
+			"name": "support.function.builtin.cyd"
+		},
+		"keywords_flow": {
+			"match": "(?i)\\b(GOTO|GOSUB|RETURN|END|LABEL)\\b",
+			"name": "keyword.control.flow.cyd"
+		},
+		"keywords_declaration": {
+			"match": "(?i)\\b(DECLARE|AS|CONST|DIM)\\b",
+			"name": "keyword.other.declaration.cyd"
+		},
+		"keywords_assignment": {
+			"match": "(?i)\\b(SET|TO|LET)\\b",
+			"name": "keyword.operator.assignment.cyd"
+		},
+		"keywords_conditional": {
+			"match": "(?i)\\b(IF|THEN|ELSE|ELSEIF|ENDIF)\\b",
+			"name": "keyword.control.conditional.cyd"
+		},
+		"keywords_loop": {
+			"match": "(?i)\\b(WHILE|WEND|DO|UNTIL)\\b",
+			"name": "keyword.control.loop.cyd"
+		},
+		"keywords_option": {
+			"match": "(?i)\\b(OPTION|CHOOSE|MENUCONFIG|CLEAROPTIONS)\\b",
+			"name": "keyword.other.option.cyd"
+		},
+		"keywords_display": {
+			"match": "(?i)\\b(PRINT|CLEAR|CENTER|NEWLINE|BACKSPACE|CHAR|REPCHAR|TAB|MARGINS|AT|PAGEPAUSE|TYPERATE|WAITKEY|WAIT|PAUSE|WINDOW|BLIT|PICTURE|DISPLAY)\\b",
+			"name": "support.function.display.cyd"
+		},
+		"keywords_color": {
+			"match": "(?i)\\b(INK|PAPER|BORDER|BRIGHT|FLASH|FADEOUT|FILLATTR|PUTATTR|CHARSET)\\b",
+			"name": "support.function.color.cyd"
+		},
+		"keywords_sound": {
+			"match": "(?i)\\b(SFX|TRACK|PLAY|LOOP)\\b",
+			"name": "support.function.sound.cyd"
+		},
+		"keywords_io": {
+			"match": "(?i)\\b(LOAD|SAVE|RAMLOAD|RAMSAVE)\\b",
+			"name": "support.function.io.cyd"
+		},
+		"keywords_misc": {
+			"match": "(?i)\\b(RANDOM|RANDOMIZE|VALUE|CHANGED)\\b",
+			"name": "keyword.other.misc.cyd"
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.binary.cyd",
+					"match": "\\b0[bB][01]+\\b"
+				},
+				{
+					"name": "constant.numeric.hex.cyd",
+					"match": "\\b0[xX][0-9a-fA-F]+\\b"
+				},
+				{
+					"name": "constant.numeric.decimal.cyd",
+					"match": "\\b[0-9]+\\b"
+				}
+			]
+		},
+		"operators_compound": {
+			"name": "keyword.operator.compound.cyd",
+			"match": "\\+=|-="
+		},
+		"operators_logical": {
+			"name": "keyword.operator.logical.cyd",
+			"match": "(?i)\\b(AND|OR|NOT)\\b"
+		},
+		"operators_comparison": {
+			"name": "keyword.operator.comparison.cyd",
+			"match": "<>|<=|>=|<<|>>|<|>"
+		},
+		"operators_arithmetic": {
+			"name": "keyword.operator.arithmetic.cyd",
+			"match": "[+\\-*/=!&|]"
+		},
 		"indirection": {
-			"name": "variable.name.cyd",
-			"match": "@@?[a-zA-Z_][a-zA-Z0-9_]*?\\b"
+			"match": "(@@?)([a-zA-Z_][a-zA-Z0-9_]*|[0-9]+)",
+			"captures": {
+				"1": {
+					"name": "punctuation.definition.variable.cyd"
+				},
+				"2": {
+					"name": "variable.other.cyd"
+				}
+			}
 		}
 	},
 	"scopeName": "source.cyd"
