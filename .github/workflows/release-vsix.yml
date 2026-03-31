@@ -1,0 +1,62 @@
+name: Release VSIX
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build VSIX
+        run: npm run package
+
+      - name: Capture extension version
+        id: ext
+        run: |
+          echo "name=$(node -p \"require('./package.json').name\")" >> $GITHUB_OUTPUT
+          echo "version=$(node -p \"require('./package.json').version\")" >> $GITHUB_OUTPUT
+
+      - name: Resolve release tag
+        id: tag
+        run: |
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
+            echo "tag=v${{ steps.ext.outputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "tag=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Validate tag matches package version
+        run: |
+          expected="v${{ steps.ext.outputs.version }}"
+          actual="${{ steps.tag.outputs.tag }}"
+          if [ "$actual" != "$expected" ]; then
+            echo "Tag ($actual) does not match package.json version ($expected)."
+            exit 1
+          fi
+
+      - name: Create GitHub Release and upload VSIX
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          name: ChooseYourDestiny Highlighter ${{ steps.tag.outputs.tag }}
+          generate_release_notes: true
+          files: ${{ steps.ext.outputs.name }}-${{ steps.ext.outputs.version }}.vsix

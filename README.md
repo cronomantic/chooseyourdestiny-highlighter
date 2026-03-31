@@ -43,6 +43,26 @@ Download or clone this repository and copy the folder into:
 
 Restart VSCode after installation.
 
+## Automated VSIX Release (GitHub Actions)
+
+When you draft (or publish) a release on GitHub, the workflow at `.github/workflows/auto-draft-release.yml` automatically builds the VSIX and attaches it to that release.
+
+### How to publish a new release
+
+1. Update the version in `package.json`, commit and push to `main`.
+2. On GitHub, go to **Releases → Draft a new release**.
+3. Create a tag matching the version (e.g. `v2.1.0`), write release notes, and click **Publish release** (or save as draft).
+4. GitHub Actions builds the VSIX and uploads it to the release automatically.
+
+You can also trigger a release via tag push and the `release-vsix.yml` workflow (`git tag v2.1.0 && git push origin v2.1.0`), or manually from the Actions tab.
+
+### Local VSIX build
+
+- `npm ci`
+- `npm run package`
+
+This produces a file named `chooseyourdestiny-highlighter-<version>.vsix` in the repository root.
+
 ## Language Reference
 
 See the full CYD language manual at:
