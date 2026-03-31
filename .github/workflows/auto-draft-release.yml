@@ -1,13 +1,25 @@
+<<<<<<< HEAD
 name: Build and attach VSIX to Release
 
 on:
   release:
     types: [created]
+=======
+name: Auto-draft Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - package.json
+>>>>>>> c5348d8daab617925e64482be0576f506a1e02ca
 
 permissions:
   contents: write
 
 jobs:
+<<<<<<< HEAD
   build-and-upload:
     runs-on: ubuntu-latest
 
@@ -18,12 +30,50 @@ jobs:
           ref: ${{ github.event.release.tag_name }}
 
       - name: Setup Node.js
+=======
+  check-and-draft:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect version change
+        id: version
+        run: |
+          current=$(node -p "require('./package.json').version")
+          previous=$(git show HEAD~1:package.json 2>/dev/null | node -p "JSON.parse(require('fs').readFileSync('/dev/stdin','utf8')).version" 2>/dev/null || echo "")
+          echo "current=$current" >> $GITHUB_OUTPUT
+          echo "previous=$previous" >> $GITHUB_OUTPUT
+          if [ "$current" != "$previous" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check if tag already exists
+        if: steps.version.outputs.changed == 'true'
+        id: tagcheck
+        run: |
+          tag="v${{ steps.version.outputs.current }}"
+          if git ls-remote --tags origin "refs/tags/$tag" | grep -q "$tag"; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Node.js
+        if: steps.version.outputs.changed == 'true' && steps.tagcheck.outputs.exists == 'false'
+>>>>>>> c5348d8daab617925e64482be0576f506a1e02ca
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: npm
 
       - name: Install dependencies
+<<<<<<< HEAD
         run: npm ci
 
       - name: Build VSIX
@@ -39,3 +89,21 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release upload "${{ github.event.release.tag_name }}" "${{ steps.ext.outputs.name }}-${{ steps.ext.outputs.version }}.vsix" --clobber
+=======
+        if: steps.version.outputs.changed == 'true' && steps.tagcheck.outputs.exists == 'false'
+        run: npm ci
+
+      - name: Build VSIX
+        if: steps.version.outputs.changed == 'true' && steps.tagcheck.outputs.exists == 'false'
+        run: npm run package
+
+      - name: Create tag and draft release
+        if: steps.version.outputs.changed == 'true' && steps.tagcheck.outputs.exists == 'false'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.current }}
+          name: ChooseYourDestiny Highlighter v${{ steps.version.outputs.current }}
+          draft: true
+          generate_release_notes: true
+          files: chooseyourdestiny-highlighter-${{ steps.version.outputs.current }}.vsix
+>>>>>>> c5348d8daab617925e64482be0576f506a1e02ca
