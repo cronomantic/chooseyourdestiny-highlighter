@@ -43,6 +43,48 @@ Download or clone this repository and copy the folder into:
 
 Restart VSCode after installation.
 
+## Automated VSIX Release (GitHub Actions)
+
+This repository includes two release workflows:
+
+### Auto-draft on version bump
+
+Workflow: `.github/workflows/auto-draft-release.yml`
+
+When you push to `main` with a changed version in `package.json`, a **draft** GitHub Release is automatically created with the VSIX attached. You can then review the draft and publish it from the GitHub Releases page.
+
+### Tag-based release
+
+Workflow: `.github/workflows/release-vsix.yml`
+
+- Trigger on git tags like `v2.1.0`
+- Manual trigger from the GitHub Actions tab (`workflow_dispatch`)
+- Builds the VSIX using `vsce`
+- Creates a published GitHub Release and uploads the generated `.vsix`
+
+### How to publish a new release
+
+**Option A — Auto-draft (recommended):**
+1. Update the version in `package.json`.
+2. Commit and push to `main`.
+3. A draft release with the VSIX will appear in GitHub Releases — review and publish it.
+
+**Option B — Tag-based:**
+1. Update the version in `package.json`.
+2. Commit and push to `main`.
+3. Create and push a matching tag:
+   - `git tag v<version>`
+   - `git push origin v<version>`
+
+The tag must match `package.json` exactly (for example: package version `2.1.0` requires tag `v2.1.0`).
+
+### Local VSIX build
+
+- `npm ci`
+- `npm run package`
+
+This produces a file named `chooseyourdestiny-highlighter-<version>.vsix` in the repository root.
+
 ## Language Reference
 
 See the full CYD language manual at:
