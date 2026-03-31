@@ -45,6 +45,7 @@ Restart VSCode after installation.
 
 ## Automated VSIX Release (GitHub Actions)
 
+<<<<<<< HEAD
 When you draft (or publish) a release on GitHub, the workflow at `.github/workflows/auto-draft-release.yml` automatically builds the VSIX and attaches it to that release.
 
 ### How to publish a new release
@@ -55,6 +56,40 @@ When you draft (or publish) a release on GitHub, the workflow at `.github/workfl
 4. GitHub Actions builds the VSIX and uploads it to the release automatically.
 
 You can also trigger a release via tag push and the `release-vsix.yml` workflow (`git tag v2.1.0 && git push origin v2.1.0`), or manually from the Actions tab.
+=======
+This repository includes two release workflows:
+
+### Auto-draft on version bump
+
+Workflow: `.github/workflows/auto-draft-release.yml`
+
+When you push to `main` with a changed version in `package.json`, a **draft** GitHub Release is automatically created with the VSIX attached. You can then review the draft and publish it from the GitHub Releases page.
+
+### Tag-based release
+
+Workflow: `.github/workflows/release-vsix.yml`
+
+- Trigger on git tags like `v2.1.0`
+- Manual trigger from the GitHub Actions tab (`workflow_dispatch`)
+- Builds the VSIX using `vsce`
+- Creates a published GitHub Release and uploads the generated `.vsix`
+
+### How to publish a new release
+
+**Option A — Auto-draft (recommended):**
+1. Update the version in `package.json`.
+2. Commit and push to `main`.
+3. A draft release with the VSIX will appear in GitHub Releases — review and publish it.
+
+**Option B — Tag-based:**
+1. Update the version in `package.json`.
+2. Commit and push to `main`.
+3. Create and push a matching tag:
+   - `git tag v<version>`
+   - `git push origin v<version>`
+
+The tag must match `package.json` exactly (for example: package version `2.1.0` requires tag `v2.1.0`).
+>>>>>>> c5348d8daab617925e64482be0576f506a1e02ca
 
 ### Local VSIX build
 
