@@ -3,7 +3,7 @@
   "publisher": "cronomantic",
   "displayName": "ChooseYourDestiny Syntax Highlighter",
   "description": "Syntax Highlighter for ChooseYourDestiny CYOA creation suite.",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "license": "MIT",
   "engines": {
     "vscode": "^1.86.0"
@@ -41,6 +41,30 @@
         "language": "cyd",
         "scopeName": "source.cyd",
         "path": "./syntaxes/cyd.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "cyd",
+        "path": "./snippets/cyd.code-snippets"
+      }
+    ],
+    "problemMatchers": [
+      {
+        "name": "cyd",
+        "owner": "cyd",
+        "source": "cydc",
+        "fileLocation": [
+          "autoDetect",
+          "${workspaceFolder}"
+        ],
+        "severity": "error",
+        "pattern": {
+          "regexp": "^ERROR \\[\\w+\\]:\\s*(.*?([A-Za-z0-9_.\\\\/-]+\\.cyd):(\\d+).*)$",
+          "message": 1,
+          "file": 2,
+          "line": 3
+        }
       }
     ]
   }

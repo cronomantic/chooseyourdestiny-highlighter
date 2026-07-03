@@ -4,6 +4,13 @@ All notable changes to the "chooseyourdestiny-highlighter" extension will be doc
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.1.1] - 2026-07-03
+
+### Added
+- Highlighting for native routines: `IMPORT name FROM "file.asm"` and `CALL name`, with dedicated scopes for the keywords, the routine name and the assembler-file path
+- Code snippets for common CYD constructs (`IF`/`ELSEIF`, `WHILE`/`WEND`, `DO`/`UNTIL`, `OPTION GOTO`/`GOSUB`, menus, `DECLARE`, `DIM`, `INCLUDE`, `IMPORT`/`CALL`, subroutines, code blocks and comments)
+- A `cyd` problem matcher (`$cyd`) that parses the compiler's `ERROR [...]: ... file.cyd:line` messages, so a build task can surface compiler errors in the editor's Problems panel
+
 ## [2.1.0] - 2026-03-21
 
 ### Added
