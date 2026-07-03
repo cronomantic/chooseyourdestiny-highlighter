@@ -32,6 +32,9 @@
 					"include": "#include_directive"
 				},
 				{
+					"include": "#import_directive"
+				},
+				{
 					"include": "#comments"
 				},
 				{
@@ -42,6 +45,9 @@
 				},
 				{
 					"include": "#gosub"
+				},
+				{
+					"include": "#call_routine"
 				},
 				{
 					"include": "#set_to"
@@ -135,6 +141,30 @@
 				}
 			}
 		},
+		"import_directive": {
+			"name": "meta.preprocessor.import.cyd",
+			"match": "(?i)\\b(IMPORT)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s+(FROM)\\s+([\"'])([^\"']+)(\\4)",
+			"captures": {
+				"1": {
+					"name": "keyword.other.declaration.cyd"
+				},
+				"2": {
+					"name": "entity.name.function.cyd"
+				},
+				"3": {
+					"name": "keyword.other.declaration.cyd"
+				},
+				"4": {
+					"name": "punctuation.definition.string.begin.cyd"
+				},
+				"5": {
+					"name": "string.quoted.other.include.cyd"
+				},
+				"6": {
+					"name": "punctuation.definition.string.end.cyd"
+				}
+			}
+		},
 		"comments": {
 			"name": "comment.block.cyd",
 			"begin": "/\\*",
@@ -180,6 +210,17 @@
 				},
 				"2": {
 					"name": "variable.other.label-ref.cyd"
+				}
+			}
+		},
+		"call_routine": {
+			"match": "(?i)(CALL)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+			"captures": {
+				"1": {
+					"name": "keyword.control.flow.cyd"
+				},
+				"2": {
+					"name": "entity.name.function.cyd"
 				}
 			}
 		},
@@ -263,11 +304,11 @@
 			"name": "support.function.builtin.cyd"
 		},
 		"keywords_flow": {
-			"match": "(?i)\\b(GOTO|GOSUB|RETURN|END|LABEL)\\b",
+			"match": "(?i)\\b(GOTO|GOSUB|CALL|RETURN|END|LABEL)\\b",
 			"name": "keyword.control.flow.cyd"
 		},
 		"keywords_declaration": {
-			"match": "(?i)\\b(DECLARE|AS|CONST|DIM)\\b",
+			"match": "(?i)\\b(DECLARE|AS|CONST|DIM|IMPORT|FROM)\\b",
 			"name": "keyword.other.declaration.cyd"
 		},
 		"keywords_assignment": {
