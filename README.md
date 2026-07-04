@@ -8,7 +8,7 @@ Syntax highlighting for [ChooseYourDestiny](https://github.com/cronomantic/Choos
 - Distinguishes between **printable text** (outside `[[ ]]`) and **code blocks** (inside `[[ ]]`)
 - Keywords organized by category with distinct colors:
   - **Flow control**: `GOTO`, `GOSUB`, `CALL`, `RETURN`, `END`, `LABEL`
-  - **Declarations**: `DECLARE`, `AS`, `CONST`, `DIM`, `IMPORT`, `FROM`
+  - **Declarations**: `DECLARE`, `AS`, `CONST`, `DIM`, `IMPORT`, `FROM`, `ASM`, `ENDASM`, `EXPORTS`, `USES`
   - **Assignments**: `SET`, `TO`, `LET`
   - **Conditionals**: `IF`, `THEN`, `ELSE`, `ELSEIF`, `ENDIF`
   - **Loops**: `WHILE`, `WEND`, `DO`, `UNTIL`
@@ -20,13 +20,14 @@ Syntax highlighting for [ChooseYourDestiny](https://github.com/cronomantic/Choos
 - Built-in functions: `INKEY()`, `RANDOM()`, `XPOS()`, `YPOS()`, `ISDISK()`, `KEMPSTON()`, `MIN()`, `MAX()`, `LASTPOS()`, etc.
 - Variable references with `@` prefix (`@myVar`, `@0`)
 - Native routines: `IMPORT name FROM "file.asm"` and `CALL name` (keywords, routine name and assembler-file path highlighted)
+- Inline assembler: `ASM name [EXPORTS ...] [USES ...] ... ENDASM` blocks, with the body scoped as embedded assembler (`;` comments, `$`/`0x`/`%` numbers, `source.asm.z80` when a Z80 grammar is installed) and dedicated scopes for the resident services (`CYD_PEEK`, `CYD_POKE`, `CYD_ARR_MAP`, `CYD_ARR_FLUSH`, `CYD_CALL`) and injected ABI symbols (`FLAGS`, `SCREEN_BUFFER_*`, `VIDEO_*`, `ARR_<name>`, `RT_<name>`)
 - Short label syntax (`#MyLabel`)
 - Block comments (`/* ... */`)
 - Numeric literals: decimal, hexadecimal (`0xFF`), binary (`0b1010`)
 - Operators: arithmetic, comparison, logical (`AND`, `OR`, `NOT`), bitwise (`&`, `|`, `!`), compound (`+=`, `-=`)
 - Code folding on `[[ ]]` blocks
 - Auto-closing of brackets and code blocks
-- **Snippets** for common constructs (`if`, `ifelse`, `ifelseif`, `while`, `do`, `sub`, `optiongoto`, `optiongosub`, `menu`, `declare`, `dim`, `include`, `import`, `call`, `block`, `comment`)
+- **Snippets** for common constructs (`if`, `ifelse`, `ifelseif`, `while`, `do`, `sub`, `optiongoto`, `optiongosub`, `menu`, `declare`, `dim`, `include`, `import`, `call`, `asm`, `asmexports`, `cydcall`, `block`, `comment`)
 - **Problem matcher** (`$cyd`) that turns compiler errors into entries in the Problems panel
 
 ## Installation

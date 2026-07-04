@@ -4,6 +4,13 @@ All notable changes to the "chooseyourdestiny-highlighter" extension will be doc
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.2.0] - 2026-07-04
+
+### Added
+- Highlighting for the inline assembler: `ASM name [EXPORTS ...] [USES ...] ... ENDASM` blocks, with the body scoped as embedded assembler (`;` comments, `$`/`0x`/`%` numbers, and — when a Z80 grammar is installed — full `source.asm.z80` highlighting)
+- Dedicated scopes inside `ASM` blocks for the resident services (`CYD_PEEK`, `CYD_POKE`, `CYD_ARR_MAP`, `CYD_ARR_FLUSH`, `CYD_CALL`) and the compiler-injected ABI symbols (`FLAGS`, `SCREEN_BUFFER_PXL/ATT`, `VIDEO_PXL/ATT`, `ARR_<name>`/`_LEN`/`_BANK`, `RT_<name>`)
+- Snippets for inline assembly: `asm` (inline routine), `asmexports` (multi-entry block) and `cydcall` (cross-block call via `USES`/`CYD_CALL`)
+
 ## [2.1.1] - 2026-07-03
 
 ### Added

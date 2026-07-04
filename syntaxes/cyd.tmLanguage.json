@@ -35,6 +35,9 @@
 					"include": "#import_directive"
 				},
 				{
+					"include": "#asm_block"
+				},
+				{
 					"include": "#comments"
 				},
 				{
@@ -164,6 +167,76 @@
 					"name": "punctuation.definition.string.end.cyd"
 				}
 			}
+		},
+		"asm_block": {
+			"name": "meta.embedded.block.asm.cyd",
+			"begin": "(?i)\\b(ASM)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.declaration.cyd"
+				},
+				"2": {
+					"name": "entity.name.function.cyd"
+				}
+			},
+			"end": "(?i)^\\s*(ENDASM)\\b",
+			"endCaptures": {
+				"1": {
+					"name": "keyword.other.declaration.cyd"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#asm_exports_uses"
+				},
+				{
+					"include": "#asm_comment"
+				},
+				{
+					"include": "#asm_services"
+				},
+				{
+					"include": "#asm_injected"
+				},
+				{
+					"include": "#asm_numbers"
+				},
+				{
+					"include": "source.asm.z80"
+				}
+			]
+		},
+		"asm_exports_uses": {
+			"match": "(?i)\\b(EXPORTS|USES)\\b",
+			"name": "keyword.other.declaration.cyd"
+		},
+		"asm_comment": {
+			"name": "comment.line.semicolon.asm.cyd",
+			"match": ";.*$"
+		},
+		"asm_services": {
+			"match": "\\b(CYD_PEEK|CYD_POKE|CYD_ARR_MAP|CYD_ARR_FLUSH|CYD_CALL|SET_RAM_BANK)\\b",
+			"name": "support.function.cyd-service.asm.cyd"
+		},
+		"asm_injected": {
+			"match": "\\b(FLAGS|SCREEN_BUFFER_PXL|SCREEN_BUFFER_ATT|VIDEO_PXL|VIDEO_ATT|ARR_[A-Za-z0-9_]+|RT_[A-Za-z0-9_]+)\\b",
+			"name": "constant.other.cyd-abi.asm.cyd"
+		},
+		"asm_numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.hex.asm.cyd",
+					"match": "(\\$|0[xX])[0-9a-fA-F]+\\b"
+				},
+				{
+					"name": "constant.numeric.binary.asm.cyd",
+					"match": "(%|0[bB])[01]+\\b"
+				},
+				{
+					"name": "constant.numeric.decimal.asm.cyd",
+					"match": "\\b[0-9]+\\b"
+				}
+			]
 		},
 		"comments": {
 			"name": "comment.block.cyd",
@@ -308,7 +381,7 @@
 			"name": "keyword.control.flow.cyd"
 		},
 		"keywords_declaration": {
-			"match": "(?i)\\b(DECLARE|AS|CONST|DIM|IMPORT|FROM)\\b",
+			"match": "(?i)\\b(DECLARE|AS|CONST|DIM|IMPORT|FROM|ASM|ENDASM|EXPORTS|USES)\\b",
 			"name": "keyword.other.declaration.cyd"
 		},
 		"keywords_assignment": {
