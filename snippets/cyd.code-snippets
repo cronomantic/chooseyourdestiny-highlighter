@@ -102,7 +102,42 @@
   "CALL native routine": {
     "prefix": "call",
     "body": "CALL ${1:name}",
-    "description": "Run an IMPORTed native routine"
+    "description": "Run an IMPORTed or ASM native routine"
+  },
+  "ASM ... ENDASM (inline native routine)": {
+    "prefix": "asm",
+    "body": [
+      "ASM ${1:name}",
+      "\t${0:; Z80 body; entered with DE = FLAGS, ends with RET}",
+      "\tret",
+      "ENDASM"
+    ],
+    "description": "Inline Z80 routine written in the script (call it with CALL)"
+  },
+  "ASM ... EXPORTS (multi-entry block)": {
+    "prefix": "asmexports",
+    "body": [
+      "ASM ${1:blockname} EXPORTS ${2:entry_a}, ${3:entry_b}",
+      "${2:entry_a}:",
+      "\t$0",
+      "\tret",
+      "${3:entry_b}:",
+      "\tret",
+      "ENDASM"
+    ],
+    "description": "Inline block exposing several CALL entry points"
+  },
+  "ASM ... USES (cross-block CYD_CALL)": {
+    "prefix": "cydcall",
+    "body": [
+      "ASM ${1:name} USES ${2:callee}",
+      "\tld a, RT_${2:callee}",
+      "\tcall CYD_CALL",
+      "\t$0",
+      "\tret",
+      "ENDASM"
+    ],
+    "description": "Native routine that calls another block's routine via CYD_CALL"
   },
   "Code block [[ ]]": {
     "prefix": "block",
