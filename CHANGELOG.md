@@ -4,6 +4,13 @@ All notable changes to the "chooseyourdestiny-highlighter" extension will be doc
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.4.0] - 2026-07-05
+
+### Added
+- Highlighting for the counted loop: `FOR` / `NEXT` / `STEP` (loop control scope)
+- Highlighting for the wide-constant markers `WORD` / `DWORD` (declaration scope), used in `DATA`, `DIM` initialisers and `LET`/`SET`
+- Snippets `for` (`FOR ... NEXT`), `forstep` (`FOR ... STEP ... NEXT`) and `wide` (`LET v = WORD/DWORD ...`)
+
 ## [2.3.0] - 2026-07-05
 
 ### Added
