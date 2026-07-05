@@ -381,15 +381,15 @@
 			"name": "keyword.control.flow.cyd"
 		},
 		"keywords_declaration": {
-			"match": "(?i)\\b(DECLARE|AS|CONST|DIM|DATA|IMPORT|FROM|ASM|ENDASM|EXPORTS|USES|WORD|DWORD)\\b",
+			"match": "(?i)\\b(DECLARE|AS|CONST|DIM|DATA|IMPORT|FROM|ASM|ENDASM|EXPORTS|USES|WORD|DWORD|ENUM|REPEAT)\\b",
 			"name": "keyword.other.declaration.cyd"
 		},
 		"keywords_assignment": {
-			"match": "(?i)\\b(SET|TO|LET)\\b",
+			"match": "(?i)\\b(SET|TO|LET|SWAP)\\b",
 			"name": "keyword.operator.assignment.cyd"
 		},
 		"keywords_conditional": {
-			"match": "(?i)\\b(IF|THEN|ELSE|ELSEIF|ENDIF)\\b",
+			"match": "(?i)\\b(IF|THEN|ELSE|ELSEIF|ENDIF|SELECT|CASE|ENDSELECT)\\b",
 			"name": "keyword.control.conditional.cyd"
 		},
 		"keywords_loop": {
@@ -422,6 +422,10 @@
 		},
 		"numbers": {
 			"patterns": [
+				{
+					"name": "constant.character.cyd",
+					"match": "'[^'\\n]'"
+				},
 				{
 					"name": "constant.numeric.binary.cyd",
 					"match": "\\b0[bB][01]+\\b"

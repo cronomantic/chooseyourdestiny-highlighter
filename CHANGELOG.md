@@ -4,6 +4,14 @@ All notable changes to the "chooseyourdestiny-highlighter" extension will be doc
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.5.0] - 2026-07-05
+
+### Added
+- Highlighting for the multi-branch: `SELECT` / `CASE` / `ENDSELECT` (conditional scope)
+- Highlighting for `ENUM` and the `REPEAT` list operator (declaration scope) and `SWAP` (assignment scope)
+- Highlighting for character literals `'A'` (`constant.character`)
+- Snippets `select`, `enum` and `swap`
+
 ## [2.4.0] - 2026-07-05
 
 ### Added
