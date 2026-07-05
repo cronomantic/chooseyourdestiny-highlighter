@@ -381,7 +381,7 @@
 			"name": "keyword.control.flow.cyd"
 		},
 		"keywords_declaration": {
-			"match": "(?i)\\b(DECLARE|AS|CONST|DIM|DATA|IMPORT|FROM|ASM|ENDASM|EXPORTS|USES)\\b",
+			"match": "(?i)\\b(DECLARE|AS|CONST|DIM|DATA|IMPORT|FROM|ASM|ENDASM|EXPORTS|USES|WORD|DWORD)\\b",
 			"name": "keyword.other.declaration.cyd"
 		},
 		"keywords_assignment": {
@@ -393,7 +393,7 @@
 			"name": "keyword.control.conditional.cyd"
 		},
 		"keywords_loop": {
-			"match": "(?i)\\b(WHILE|WEND|DO|UNTIL)\\b",
+			"match": "(?i)\\b(WHILE|WEND|DO|UNTIL|FOR|NEXT|STEP)\\b",
 			"name": "keyword.control.loop.cyd"
 		},
 		"keywords_option": {
