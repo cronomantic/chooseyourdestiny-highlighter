@@ -68,6 +68,26 @@
     ],
     "description": "Counted loop with an explicit (signed) STEP"
   },
+  "SELECT ... CASE ... ENDSELECT": {
+    "prefix": "select",
+    "body": [
+      "SELECT ${1:@v}",
+      "\tCASE ${2:0}    $3",
+      "\tCASE ELSE    $0",
+      "ENDSELECT"
+    ],
+    "description": "Multi-branch on a value (no fall-through)"
+  },
+  "ENUM": {
+    "prefix": "enum",
+    "body": "ENUM { ${1:A, B, C} }",
+    "description": "Sequential named constants (auto-increment from 0)"
+  },
+  "SWAP two variables": {
+    "prefix": "swap",
+    "body": "SWAP ${1:a}, ${2:b}",
+    "description": "Exchange two variables (no temporary)"
+  },
   "Subroutine (LABEL ... RETURN)": {
     "prefix": "sub",
     "body": [
