@@ -89,6 +89,22 @@
     "body": "DIM ${1:name}(${2:size})",
     "description": "Declare a data array"
   },
+  "DATA statement": {
+    "prefix": "data",
+    "body": "DATA ${1:1, 2, 3}",
+    "description": "Append byte values to the immutable DATA stream"
+  },
+  "READ ... DATAEND loop": {
+    "prefix": "readloop",
+    "body": [
+      "RESTORE",
+      "WHILE (DATAEND() = 0)",
+      "\tREAD ${1:v}",
+      "\t$0",
+      "WEND"
+    ],
+    "description": "Read the whole immutable DATA stream with a loop"
+  },
   "INCLUDE file": {
     "prefix": "include",
     "body": "INCLUDE \"${1:path/file.cyd}\"",

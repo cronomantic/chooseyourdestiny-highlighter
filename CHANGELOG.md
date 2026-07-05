@@ -4,6 +4,12 @@ All notable changes to the "chooseyourdestiny-highlighter" extension will be doc
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.3.0] - 2026-07-05
+
+### Added
+- Highlighting for the immutable data stream: `DATA` (declaration), `READ` / `RESTORE` (statements) and the `DATAEND()` built-in function
+- Snippets `data` (a `DATA` statement) and `readloop` (`RESTORE` + `WHILE (DATAEND() = 0) ... WEND` read loop)
+
 ## [2.2.0] - 2026-07-04
 
 ### Added

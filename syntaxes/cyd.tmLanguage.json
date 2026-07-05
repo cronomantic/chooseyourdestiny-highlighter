@@ -373,15 +373,15 @@
 			}
 		},
 		"builtin_functions": {
-			"match": "(?i)\\b(INKEY|RANDOM|XPOS|YPOS|ISDISK|KEMPSTON|MIN|MAX|ATTRVAL|ATTRMASK|GETATTR|OPTIONVAL|OPTIONSEL|NUMOPTIONS|SAVERESULT|LASTPOS)(?=\\s*\\()",
+			"match": "(?i)\\b(INKEY|RANDOM|XPOS|YPOS|ISDISK|KEMPSTON|MIN|MAX|ATTRVAL|ATTRMASK|GETATTR|OPTIONVAL|OPTIONSEL|NUMOPTIONS|SAVERESULT|LASTPOS|DATAEND)(?=\\s*\\()",
 			"name": "support.function.builtin.cyd"
 		},
 		"keywords_flow": {
-			"match": "(?i)\\b(GOTO|GOSUB|CALL|RETURN|END|LABEL)\\b",
+			"match": "(?i)\\b(GOTO|GOSUB|CALL|RETURN|END|LABEL|READ|RESTORE)\\b",
 			"name": "keyword.control.flow.cyd"
 		},
 		"keywords_declaration": {
-			"match": "(?i)\\b(DECLARE|AS|CONST|DIM|IMPORT|FROM|ASM|ENDASM|EXPORTS|USES)\\b",
+			"match": "(?i)\\b(DECLARE|AS|CONST|DIM|DATA|IMPORT|FROM|ASM|ENDASM|EXPORTS|USES)\\b",
 			"name": "keyword.other.declaration.cyd"
 		},
 		"keywords_assignment": {
