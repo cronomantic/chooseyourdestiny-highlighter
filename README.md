@@ -20,17 +20,22 @@ Syntax highlighting for [ChooseYourDestiny](https://github.com/cronomantic/Choos
 - Built-in functions: `INKEY()`, `RANDOM()`, `XPOS()`, `YPOS()`, `ISDISK()`, `KEMPSTON()`, `MIN()`, `MAX()`, `LASTPOS()`, etc.
 - Variable references with `@` prefix (`@myVar`, `@0`)
 - Native routines: `IMPORT name FROM "file.asm"` and `CALL name` (keywords, routine name and assembler-file path highlighted)
-- Inline assembler: `ASM name [EXPORTS ...] [USES ...] ... ENDASM` blocks, with the body scoped as embedded assembler (`;` comments, `$`/`0x`/`%` numbers, `source.asm.z80` when a Z80 grammar is installed) and dedicated scopes for the resident services (`CYD_PEEK`, `CYD_POKE`, `CYD_ARR_MAP`, `CYD_ARR_FLUSH`, `CYD_CALL`) and injected ABI symbols (`FLAGS`, `SCREEN_BUFFER_*`, `VIDEO_*`, `ARR_<name>`, `RT_<name>`)
+- Inline assembler: `ASM name [EXPORTS ...] [USES ...] ... ENDASM` blocks, with the body scoped as embedded assembler (`;` comments, `$`/`0x`/`%` numbers, `source.asm.z80` when a Z80 grammar is installed) and dedicated scopes for the resident services (`CYD_PEEK`, `CYD_POKE`, `CYD_ARR_MAP`, `CYD_ARR_FLUSH`, `CYD_CALL`, `CYD_SYSCALL` and the `SVC_*` service numbers) and injected ABI symbols (`FLAGS`, `SCREEN_BUFFER_*`, `VIDEO_*`, `ARR_<name>`, `RT_<name>`)
 - Short label syntax (`#MyLabel`)
 - Block comments (`/* ... */`)
-- Numeric literals: decimal, hexadecimal (`0xFF`), binary (`0b1010`)
+- Numeric literals: decimal, hexadecimal (`0xFF`), binary (`0b1010`), character (`'A'`)
+- Strings (`"HI"`) in `DATA`, `DIM` initialisers and `LET`/`SET`, and the range operator (`1..8`, `'A'..'Z'`)
 - Operators: arithmetic, comparison, logical (`AND`, `OR`, `NOT`), bitwise (`&`, `|`, `!`), compound (`+=`, `-=`)
 - Code folding on `[[ ]]` blocks
 - Auto-closing of brackets and code blocks
 - **Snippets** for common constructs (`if`, `ifelse`, `ifelseif`, `while`, `do`, `sub`, `optiongoto`, `optiongosub`, `menu`, `declare`, `dim`, `include`, `import`, `call`, `asm`, `asmexports`, `cydcall`, `block`, `comment`)
-- **Problem matcher** (`$cyd`) that turns compiler errors into entries in the Problems panel
+- **Problem matcher** (`$cyd`) that turns compiler errors and warnings into entries in the Problems panel
 
 ## Installation
+
+### From the Marketplace
+
+In VSCode, go to Extensions (`Ctrl+Shift+X`), search for **ChooseYourDestiny** and click **Install**.
 
 ### From VSIX file
 
@@ -47,18 +52,25 @@ Download or clone this repository and copy the folder into:
 
 Restart VSCode after installation.
 
-## Automated VSIX Release (GitHub Actions)
+## Automated release (GitHub Actions)
 
-When you draft (or publish) a release on GitHub, the workflow at `.github/workflows/auto-draft-release.yml` automatically builds the VSIX and attaches it to that release.
+### How to publish a new version
 
-### How to publish a new release
+1. Update the version in `package.json` (and `CHANGELOG.md`), commit and push to `main`.
+2. Push a tag matching the version: `git tag v2.6.0 && git push origin v2.6.0`.
+3. The `release-vsix.yml` workflow builds the VSIX, creates the GitHub release with it
+   and publishes it to the VS Code Marketplace.
 
-1. Update the version in `package.json`, commit and push to `main`.
-2. On GitHub, go to **Releases → Draft a new release**.
-3. Create a tag matching the version (e.g. `v2.1.0`), write release notes, and click **Publish release** (or save as draft).
-4. GitHub Actions builds the VSIX and uploads it to the release automatically.
+The tag must match the version in `package.json`, or the workflow stops before
+publishing anything. The workflow can also be run by hand from the Actions tab.
 
-You can also trigger a release via tag push and the `release-vsix.yml` workflow (`git tag v2.1.0 && git push origin v2.1.0`), or manually from the Actions tab.
+The Marketplace step needs the repository secret `VSCE_PAT`, a Personal Access Token
+of the `cronomantic` publisher with the *Marketplace (Manage)* scope. Without it the
+step is skipped and only the GitHub release is made. Re-running the workflow for a
+version already on the Marketplace does not fail.
+
+Drafting a release by hand on GitHub still works: `auto-draft-release.yml` builds the
+VSIX and attaches it to that release, but does not publish it to the Marketplace.
 
 ### Local VSIX build
 
@@ -76,7 +88,7 @@ above for the full set of prefixes.
 ## Build task and error reporting
 
 The extension contributes a problem matcher named `$cyd` that understands the
-compiler's error format (`ERROR [...]: ... file.cyd:line`). Add a task to your
+compiler's error and warning format (`ERROR [...]: ... file.cyd:line`). Add a task to your
 project's `.vscode/tasks.json` so that building surfaces errors directly in the
 Problems panel (adjust the command to how you invoke the compiler):
 
@@ -97,8 +109,8 @@ Problems panel (adjust the command to how you invoke the compiler):
 ```
 
 Run it with **Terminal → Run Build Task** (`Ctrl+Shift+B`). Any
-`ERROR [...]: ... file.cyd:line` printed by the compiler becomes a clickable entry
-in the Problems panel.
+`ERROR [...]: ... file.cyd:line` or `WARNING [...]: ... file.cyd:line` printed by the
+compiler becomes a clickable entry in the Problems panel, as an error or a warning.
 
 ## Language Reference
 

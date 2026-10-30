@@ -4,6 +4,16 @@ All notable changes to the "chooseyourdestiny-highlighter" extension will be doc
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.6.0] - 2026-10-30
+
+### Added
+- Highlighting for strings in code (`"HI"`), used in `DATA`, `DIM` initialisers and `LET`/`SET`
+- Highlighting for the range operator `..` (`{ 1..8 }`, `'A'..'Z'`)
+- `CYD_SYSCALL` and the `SVC_*` service numbers in `ASM` blocks
+- The `$cyd` problem matcher also reports compiler warnings (`WARNING [...]: ... file.cyd:line`)
+- Extension icon and Marketplace metadata
+- The tag release workflow publishes the extension to the VS Code Marketplace
+
 ## [2.5.0] - 2026-07-05
 
 ### Added

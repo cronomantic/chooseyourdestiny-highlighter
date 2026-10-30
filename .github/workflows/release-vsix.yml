@@ -12,6 +12,10 @@ permissions:
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
+    env:
+      # Personal Access Token of the Marketplace publisher (repository secret).
+      # Without it the VSIX is still built and attached to the GitHub release.
+      VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
     steps:
       - name: Checkout
@@ -60,3 +64,7 @@ jobs:
           name: ChooseYourDestiny Highlighter ${{ steps.tag.outputs.tag }}
           generate_release_notes: true
           files: ${{ steps.ext.outputs.name }}-${{ steps.ext.outputs.version }}.vsix
+
+      - name: Publish to the VS Code Marketplace
+        if: env.VSCE_PAT != ''
+        run: npx vsce publish --skip-duplicate --packagePath "${{ steps.ext.outputs.name }}-${{ steps.ext.outputs.version }}.vsix"

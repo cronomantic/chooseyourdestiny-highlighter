@@ -3,8 +3,13 @@
   "publisher": "cronomantic",
   "displayName": "ChooseYourDestiny Syntax Highlighter",
   "description": "Syntax Highlighter for ChooseYourDestiny CYOA creation suite.",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "license": "MIT",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#000000",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.86.0"
   },
@@ -21,6 +26,14 @@
   },
   "categories": [
     "Programming Languages"
+  ],
+  "keywords": [
+    "ChooseYourDestiny",
+    "CYD",
+    "ZX Spectrum",
+    "gamebook",
+    "CYOA",
+    "interactive fiction"
   ],
   "contributes": {
     "languages": [
@@ -60,10 +73,11 @@
         ],
         "severity": "error",
         "pattern": {
-          "regexp": "^ERROR \\[\\w+\\]:\\s*(.*?([A-Za-z0-9_.\\\\/-]+\\.cyd):(\\d+).*)$",
-          "message": 1,
-          "file": 2,
-          "line": 3
+          "regexp": "^(ERROR|WARNING) \\[\\w+\\]:\\s*(.*?([A-Za-z0-9_.\\\\/-]+\\.cyd):(\\d+).*)$",
+          "severity": 1,
+          "message": 2,
+          "file": 3,
+          "line": 4
         }
       }
     ]

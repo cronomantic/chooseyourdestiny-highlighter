@@ -41,6 +41,9 @@
 					"include": "#comments"
 				},
 				{
+					"include": "#strings"
+				},
+				{
 					"include": "#label"
 				},
 				{
@@ -108,6 +111,9 @@
 				},
 				{
 					"include": "#numbers"
+				},
+				{
+					"include": "#operators_range"
 				},
 				{
 					"include": "#operators_compound"
@@ -215,7 +221,7 @@
 			"match": ";.*$"
 		},
 		"asm_services": {
-			"match": "\\b(CYD_PEEK|CYD_POKE|CYD_ARR_MAP|CYD_ARR_FLUSH|CYD_CALL|SET_RAM_BANK)\\b",
+			"match": "\\b(CYD_PEEK|CYD_POKE|CYD_ARR_MAP|CYD_ARR_FLUSH|CYD_CALL|CYD_SYSCALL|SET_RAM_BANK|SVC_[A-Z0-9_]+)\\b",
 			"name": "support.function.cyd-service.asm.cyd"
 		},
 		"asm_injected": {
@@ -250,6 +256,21 @@
 			"endCaptures": {
 				"0": {
 					"name": "punctuation.definition.comment.end.cyd"
+				}
+			}
+		},
+		"strings": {
+			"name": "string.quoted.double.cyd",
+			"begin": "\"",
+			"end": "\"|$",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.cyd"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.cyd"
 				}
 			}
 		},
@@ -439,6 +460,10 @@
 					"match": "\\b[0-9]+\\b"
 				}
 			]
+		},
+		"operators_range": {
+			"name": "keyword.operator.range.cyd",
+			"match": "\\.\\."
 		},
 		"operators_compound": {
 			"name": "keyword.operator.compound.cyd",
