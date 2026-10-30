@@ -221,11 +221,11 @@
 			"match": ";.*$"
 		},
 		"asm_services": {
-			"match": "\\b(CYD_PEEK|CYD_POKE|CYD_ARR_MAP|CYD_ARR_FLUSH|CYD_CALL|CYD_SYSCALL|SET_RAM_BANK|SVC_[A-Z0-9_]+)\\b",
+			"match": "\\b(CYD_PEEK|CYD_POKE|CYD_ARR_MAP|CYD_ARR_FLUSH|CYD_CALL|CYD_SYSCALL|SET_RAM_BANK)\\b",
 			"name": "support.function.cyd-service.asm.cyd"
 		},
 		"asm_injected": {
-			"match": "\\b(FLAGS|SCREEN_BUFFER_PXL|SCREEN_BUFFER_ATT|VIDEO_PXL|VIDEO_ATT|ARR_[A-Za-z0-9_]+|RT_[A-Za-z0-9_]+)\\b",
+			"match": "\\b(FLAGS|SCREEN_BUFFER_PXL|SCREEN_BUFFER_ATT|VIDEO_PXL|VIDEO_ATT|SVC_[A-Z0-9_]+|ARR_[A-Za-z0-9_]+|RT_[A-Za-z0-9_]+)\\b",
 			"name": "constant.other.cyd-abi.asm.cyd"
 		},
 		"asm_numbers": {
@@ -261,15 +261,12 @@
 		},
 		"strings": {
 			"name": "string.quoted.double.cyd",
-			"begin": "\"",
-			"end": "\"|$",
-			"beginCaptures": {
-				"0": {
+			"match": "(\")((?:[^\"\\n\\]]|\\](?!\\]))*)(\")",
+			"captures": {
+				"1": {
 					"name": "punctuation.definition.string.begin.cyd"
-				}
-			},
-			"endCaptures": {
-				"0": {
+				},
+				"3": {
 					"name": "punctuation.definition.string.end.cyd"
 				}
 			}

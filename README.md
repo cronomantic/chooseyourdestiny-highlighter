@@ -7,35 +7,43 @@ Syntax highlighting for [ChooseYourDestiny](https://github.com/cronomantic/Choos
 - Full syntax highlighting for `.cyd` files
 - Distinguishes between **printable text** (outside `[[ ]]`) and **code blocks** (inside `[[ ]]`)
 - Keywords organized by category with distinct colors:
-  - **Flow control**: `GOTO`, `GOSUB`, `CALL`, `RETURN`, `END`, `LABEL`
-  - **Declarations**: `DECLARE`, `AS`, `CONST`, `DIM`, `IMPORT`, `FROM`, `ASM`, `ENDASM`, `EXPORTS`, `USES`
-  - **Assignments**: `SET`, `TO`, `LET`
-  - **Conditionals**: `IF`, `THEN`, `ELSE`, `ELSEIF`, `ENDIF`
-  - **Loops**: `WHILE`, `WEND`, `DO`, `UNTIL`
+  - **Flow control**: `GOTO`, `GOSUB`, `CALL`, `RETURN`, `END`, `LABEL`, `READ`, `RESTORE`
+  - **Declarations**: `DECLARE`, `AS`, `CONST`, `DIM`, `DATA`, `ENUM`, `WORD`, `DWORD`, `REPEAT`, `IMPORT`, `FROM`, `ASM`, `ENDASM`, `EXPORTS`, `USES`
+  - **Assignments**: `SET`, `TO`, `LET`, `SWAP`
+  - **Conditionals**: `IF`, `THEN`, `ELSE`, `ELSEIF`, `ENDIF`, `SELECT`, `CASE`, `ENDSELECT`
+  - **Loops**: `WHILE`, `WEND`, `DO`, `UNTIL`, `FOR`, `NEXT`, `STEP`
   - **Options/Menus**: `OPTION`, `CHOOSE`, `MENUCONFIG`, `CLEAROPTIONS`
   - **Display**: `PRINT`, `CLEAR`, `CENTER`, `AT`, `PICTURE`, `DISPLAY`, `WINDOW`, `BLIT`, etc.
   - **Colors**: `INK`, `PAPER`, `BORDER`, `BRIGHT`, `FLASH`, `FADEOUT`, `FILLATTR`, etc.
   - **Sound**: `SFX`, `TRACK`, `PLAY`, `LOOP`
   - **I/O**: `LOAD`, `SAVE`, `RAMLOAD`, `RAMSAVE`
-- Built-in functions: `INKEY()`, `RANDOM()`, `XPOS()`, `YPOS()`, `ISDISK()`, `KEMPSTON()`, `MIN()`, `MAX()`, `LASTPOS()`, etc.
+- Built-in functions: `INKEY()`, `RANDOM()`, `XPOS()`, `YPOS()`, `ISDISK()`, `KEMPSTON()`, `MIN()`, `MAX()`, `LASTPOS()`, `DATAEND()`, etc.
 - Variable references with `@` prefix (`@myVar`, `@0`)
 - Native routines: `IMPORT name FROM "file.asm"` and `CALL name` (keywords, routine name and assembler-file path highlighted)
-- Inline assembler: `ASM name [EXPORTS ...] [USES ...] ... ENDASM` blocks, with the body scoped as embedded assembler (`;` comments, `$`/`0x`/`%` numbers, `source.asm.z80` when a Z80 grammar is installed) and dedicated scopes for the resident services (`CYD_PEEK`, `CYD_POKE`, `CYD_ARR_MAP`, `CYD_ARR_FLUSH`, `CYD_CALL`, `CYD_SYSCALL` and the `SVC_*` service numbers) and injected ABI symbols (`FLAGS`, `SCREEN_BUFFER_*`, `VIDEO_*`, `ARR_<name>`, `RT_<name>`)
+- Inline assembler: `ASM name [EXPORTS ...] [USES ...] ... ENDASM` blocks, with the body scoped as embedded assembler (`;` comments, `$`/`0x`/`%` numbers, `source.asm.z80` when a Z80 grammar is installed) and dedicated scopes for the resident services (`CYD_PEEK`, `CYD_POKE`, `CYD_ARR_MAP`, `CYD_ARR_FLUSH`, `CYD_CALL`, `CYD_SYSCALL`) and injected ABI symbols (`FLAGS`, `SCREEN_BUFFER_*`, `VIDEO_*`, the `SVC_*` service numbers, `ARR_<name>`, `RT_<name>`)
 - Short label syntax (`#MyLabel`)
 - Block comments (`/* ... */`)
 - Numeric literals: decimal, hexadecimal (`0xFF`), binary (`0b1010`), character (`'A'`)
-- Strings (`"HI"`) in `DATA`, `DIM` initialisers and `LET`/`SET`, and the range operator (`1..8`, `'A'..'Z'`)
+- Strings (`"HI"`) in `DATA`, `DIM` initialisers and `LET`/`SET`, and the range operator (`{ 1..8 }`, `'A'..'Z'`)
 - Operators: arithmetic, comparison, logical (`AND`, `OR`, `NOT`), bitwise (`&`, `|`, `!`), compound (`+=`, `-=`)
 - Code folding on `[[ ]]` blocks
 - Auto-closing of brackets and code blocks
-- **Snippets** for common constructs (`if`, `ifelse`, `ifelseif`, `while`, `do`, `sub`, `optiongoto`, `optiongosub`, `menu`, `declare`, `dim`, `include`, `import`, `call`, `asm`, `asmexports`, `cydcall`, `block`, `comment`)
+- **Snippets** for common constructs (`if`, `ifelse`, `ifelseif`, `while`, `do`, `for`, `forstep`, `select`, `enum`, `swap`, `sub`, `optiongoto`, `optiongosub`, `menu`, `declare`, `dim`, `data`, `wide`, `readloop`, `include`, `import`, `call`, `asm`, `asmexports`, `cydcall`, `block`, `comment`)
 - **Problem matcher** (`$cyd`) that turns compiler errors and warnings into entries in the Problems panel
 
 ## Installation
 
 ### From the Marketplace
 
-In VSCode, go to Extensions (`Ctrl+Shift+X`), search for **ChooseYourDestiny** and click **Install**.
+In VSCode, go to Extensions (`Ctrl+Shift+X`), search for **ChooseYourDestiny** and click **Install**,
+or open the [Marketplace page](https://marketplace.visualstudio.com/items?itemName=cronomantic.chooseyourdestiny-highlighter).
+From the command line:
+
+```bash
+code --install-extension cronomantic.chooseyourdestiny-highlighter
+```
+
+VSCode then keeps the extension up to date by itself.
 
 ### From VSIX file
 
@@ -56,13 +64,15 @@ Restart VSCode after installation.
 
 ### How to publish a new version
 
-1. Update the version in `package.json` (and `CHANGELOG.md`), commit and push to `main`.
-2. Push a tag matching the version: `git tag v2.6.0 && git push origin v2.6.0`.
+1. Update the version in `package.json` and `package-lock.json` (`npm version X.Y.Z --no-git-tag-version`
+   does both) and add its entry to `CHANGELOG.md`; commit and push to `main`.
+2. Push a tag `vX.Y.Z` equal to that version: `git tag v2.6.0 && git push origin v2.6.0`.
 3. The `release-vsix.yml` workflow builds the VSIX, creates the GitHub release with it
    and publishes it to the VS Code Marketplace.
 
-The tag must match the version in `package.json`, or the workflow stops before
-publishing anything. The workflow can also be run by hand from the Actions tab.
+The tag must be exactly `v` + the version in `package.json`, or the workflow stops before
+creating the release or publishing anything. The workflow can also be run by hand from the
+Actions tab: it then uses `v` + the version in `package.json` as the tag.
 
 Publishing uses Marketplace trusted publishing (`vsce publish --oidc`): no token is
 stored in the repository. The `cronomantic` publisher must have a trusted publishing
@@ -88,7 +98,8 @@ above for the full set of prefixes.
 ## Build task and error reporting
 
 The extension contributes a problem matcher named `$cyd` that understands the
-compiler's error and warning format (`ERROR [...]: ... file.cyd:line`). Add a task to your
+compiler's error and warning format (`ERROR [...]: ... file.cyd:line` and
+`WARNING [...]: ... file.cyd:line`). Add a task to your
 project's `.vscode/tasks.json` so that building surfaces errors directly in the
 Problems panel (adjust the command to how you invoke the compiler):
 
@@ -120,23 +131,16 @@ See the full CYD language manual at:
 
 ## Known Issues
 
-None known yet.
+- A string literal that contains `]]` (such as `"]]"`) is valid for the compiler, but the
+  highlighter closes the code block at that `]]`. This is deliberate: it keeps an unclosed `"`
+  from turning the `]]` and the text after it into a string while you type.
+- The compiler reports locations by file name only (`file.cyd:12`), so the `$cyd` problem
+  matcher cannot open an included file that lives in another folder, nor a file whose name
+  contains spaces.
 
 ## Release Notes
 
-### 2.1.1
-- Added highlighting for native routines (`IMPORT name FROM "file.asm"`, `CALL name`)
-- Added code snippets for common CYD constructs
-- Added the `$cyd` problem matcher so build tasks report compiler errors in the Problems panel
-
-### 2.0.0
-- Categorized keywords with distinct scopes for better theme support
-- Added numeric literal, function, and variable reference highlighting
-- Added code folding and improved bracket support
-- Fixed keyword names to match the compiler (`XPOS`/`YPOS` instead of `POSX`/`POSY`)
-
-### 1.0.0
-- Initial release
+See [CHANGELOG.md](CHANGELOG.md).
 
 ---
 

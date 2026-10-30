@@ -4,15 +4,19 @@ All notable changes to the "chooseyourdestiny-highlighter" extension will be doc
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [2.6.0] - 2026-10-30
+## [2.6.0] - 2026-10-31
 
 ### Added
-- Highlighting for strings in code (`"HI"`), used in `DATA`, `DIM` initialisers and `LET`/`SET`
+- Highlighting for strings in code (`"HI"`), used in `DATA`, `DIM` initialisers and `LET`/`SET`. A string ends on its own line and never spans a `]]`, so an unclosed `"` does not swallow the end of the code block or the text after it
 - Highlighting for the range operator `..` (`{ 1..8 }`, `'A'..'Z'`)
-- `CYD_SYSCALL` and the `SVC_*` service numbers in `ASM` blocks
-- The `$cyd` problem matcher also reports compiler warnings (`WARNING [...]: ... file.cyd:line`)
-- Extension icon and Marketplace metadata
-- The tag release workflow publishes the extension to the VS Code Marketplace with trusted publishing (OIDC, no stored token)
+- `ASM` blocks: `CYD_SYSCALL` as a resident service and the `SVC_*` service numbers as injected constants
+- The `$cyd` problem matcher also reports compiler warnings (`WARNING [...]: ... file.cyd:line`) as warnings
+- Extension icon, dark gallery banner and keywords for the VS Code Marketplace
+- The extension is published on the VS Code Marketplace: pushing a `vX.Y.Z` tag publishes it with trusted publishing (OIDC, no stored token)
+
+### Changed
+- `@vscode/vsce` 4.1, which needs Node 22; both release workflows use Node 22
+- README: Marketplace installation, release procedure, and the keyword and snippet lists brought up to date
 
 ## [2.5.0] - 2026-07-05
 
