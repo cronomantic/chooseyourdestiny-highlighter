@@ -12,7 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - `CYD_SYSCALL` and the `SVC_*` service numbers in `ASM` blocks
 - The `$cyd` problem matcher also reports compiler warnings (`WARNING [...]: ... file.cyd:line`)
 - Extension icon and Marketplace metadata
-- The tag release workflow publishes the extension to the VS Code Marketplace
+- The tag release workflow publishes the extension to the VS Code Marketplace with trusted publishing (OIDC, no stored token)
 
 ## [2.5.0] - 2026-07-05
 

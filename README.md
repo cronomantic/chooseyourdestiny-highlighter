@@ -64,10 +64,10 @@ Restart VSCode after installation.
 The tag must match the version in `package.json`, or the workflow stops before
 publishing anything. The workflow can also be run by hand from the Actions tab.
 
-The Marketplace step needs the repository secret `VSCE_PAT`, a Personal Access Token
-of the `cronomantic` publisher with the *Marketplace (Manage)* scope. Without it the
-step is skipped and only the GitHub release is made. Re-running the workflow for a
-version already on the Marketplace does not fail.
+Publishing uses Marketplace trusted publishing (`vsce publish --oidc`): no token is
+stored in the repository. The `cronomantic` publisher must have a trusted publishing
+policy for this repository and the `release-vsix.yml` workflow. Re-running the
+workflow for a version already on the Marketplace does not fail.
 
 Drafting a release by hand on GitHub still works: `auto-draft-release.yml` builds the
 VSIX and attaches it to that release, but does not publish it to the Marketplace.

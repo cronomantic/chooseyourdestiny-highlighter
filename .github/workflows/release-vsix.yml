@@ -8,14 +8,13 @@ on:
 
 permissions:
   contents: write
+  # Trusted publishing: the Marketplace accepts this workflow's OIDC token
+  # instead of a Personal Access Token.
+  id-token: write
 
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
-    env:
-      # Personal Access Token of the Marketplace publisher (repository secret).
-      # Without it the VSIX is still built and attached to the GitHub release.
-      VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
     steps:
       - name: Checkout
@@ -24,7 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: npm
 
       - name: Install dependencies
@@ -66,5 +65,4 @@ jobs:
           files: ${{ steps.ext.outputs.name }}-${{ steps.ext.outputs.version }}.vsix
 
       - name: Publish to the VS Code Marketplace
-        if: env.VSCE_PAT != ''
-        run: npx vsce publish --skip-duplicate --packagePath "${{ steps.ext.outputs.name }}-${{ steps.ext.outputs.version }}.vsix"
+        run: npx vsce publish --oidc --skip-duplicate --packagePath "${{ steps.ext.outputs.name }}-${{ steps.ext.outputs.version }}.vsix"

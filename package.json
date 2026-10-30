@@ -18,7 +18,7 @@
     "package:out": "vsce package --out chooseyourdestiny-highlighter.vsix"
   },
   "devDependencies": {
-    "@vscode/vsce": "^3.6.0"
+    "@vscode/vsce": "^4.1.0"
   },
   "repository": {
     "type": "git",
