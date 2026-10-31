@@ -8,8 +8,8 @@ on:
 
 permissions:
   contents: write
-  # Trusted publishing: the Marketplace accepts this workflow's OIDC token
-  # instead of a Personal Access Token.
+  # Trusted publishing: the Marketplace and Open VSX accept this workflow's
+  # OIDC token instead of a Personal Access Token.
   id-token: write
 
 jobs:
@@ -66,3 +66,6 @@ jobs:
 
       - name: Publish to the VS Code Marketplace
         run: npx vsce publish --oidc --skip-duplicate --packagePath "${{ steps.ext.outputs.name }}-${{ steps.ext.outputs.version }}.vsix"
+
+      - name: Publish to Open VSX
+        run: npx ovsx publish --trusted-publishing --skip-duplicate --packagePath "${{ steps.ext.outputs.name }}-${{ steps.ext.outputs.version }}.vsix"

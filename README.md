@@ -45,6 +45,11 @@ code --install-extension cronomantic.chooseyourdestiny-highlighter
 
 VSCode then keeps the extension up to date by itself.
 
+### From Open VSX
+
+VSCodium and other editors that use [Open VSX](https://open-vsx.org/extension/cronomantic/chooseyourdestiny-highlighter)
+install it the same way, searching for **ChooseYourDestiny** in their Extensions view.
+
 ### From VSIX file
 
 Download the file `chooseyourdestiny-highlighter-x.x.x.vsix` from [Releases](https://github.com/cronomantic/chooseyourdestiny-highlighter/releases).
@@ -68,19 +73,21 @@ Restart VSCode after installation.
    does both) and add its entry to `CHANGELOG.md`; commit and push to `main`.
 2. Push a tag `vX.Y.Z` equal to that version: `git tag v2.6.0 && git push origin v2.6.0`.
 3. The `release-vsix.yml` workflow builds the VSIX, creates the GitHub release with it
-   and publishes it to the VS Code Marketplace.
+   and publishes it to the VS Code Marketplace and to Open VSX.
 
 The tag must be exactly `v` + the version in `package.json`, or the workflow stops before
 creating the release or publishing anything. The workflow can also be run by hand from the
 Actions tab: it then uses `v` + the version in `package.json` as the tag.
 
-Publishing uses Marketplace trusted publishing (`vsce publish --oidc`): no token is
-stored in the repository. The `cronomantic` publisher must have a trusted publishing
-policy for this repository and the `release-vsix.yml` workflow. Re-running the
-workflow for a version already on the Marketplace does not fail.
+Publishing uses trusted publishing on both registries (`vsce publish --oidc` and
+`ovsx publish --trusted-publishing`): no token is stored in the repository. The
+`cronomantic` publisher on the Marketplace must have a trusted publishing policy for this
+repository and the `release-vsix.yml` workflow, and the extension on Open VSX a trusted
+publisher for the same repository and workflow. Re-running the workflow for a version
+already published does not fail.
 
 Drafting a release by hand on GitHub still works: `auto-draft-release.yml` builds the
-VSIX and attaches it to that release, but does not publish it to the Marketplace.
+VSIX and attaches it to that release, but does not publish it to either registry.
 
 ### Local VSIX build
 

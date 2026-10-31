@@ -4,6 +4,11 @@ All notable changes to the "chooseyourdestiny-highlighter" extension will be doc
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [Unreleased]
+
+### Added
+- Pushing a `vX.Y.Z` tag also publishes the extension on Open VSX, with trusted publishing (OIDC, no stored token)
+
 ## [2.6.1] - 2026-10-31
 
 ### Changed
