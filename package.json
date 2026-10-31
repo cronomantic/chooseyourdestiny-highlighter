@@ -3,7 +3,7 @@
   "publisher": "cronomantic",
   "displayName": "ChooseYourDestiny Syntax Highlighter",
   "description": "Syntax Highlighter for ChooseYourDestiny CYOA creation suite.",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "license": "MIT",
   "icon": "images/icon.png",
   "galleryBanner": {

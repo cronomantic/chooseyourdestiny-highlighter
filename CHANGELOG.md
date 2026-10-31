@@ -4,6 +4,11 @@ All notable changes to the "chooseyourdestiny-highlighter" extension will be doc
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [2.6.1] - 2026-10-31
+
+### Changed
+- README: removed the known issue about strings containing `]]`. From ChooseYourDestiny 1.6.6 the compiler does not accept `]]` inside a string either, so the compiler and the highlighter agree
+
 ## [2.6.0] - 2026-10-31
 
 ### Added
