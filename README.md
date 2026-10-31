@@ -131,9 +131,6 @@ See the full CYD language manual at:
 
 ## Known Issues
 
-- A string literal that contains `]]` (such as `"]]"`) is valid for the compiler, but the
-  highlighter closes the code block at that `]]`. This is deliberate: it keeps an unclosed `"`
-  from turning the `]]` and the text after it into a string while you type.
 - The compiler reports locations by file name only (`file.cyd:12`), so the `$cyd` problem
   matcher cannot open an included file that lives in another folder, nor a file whose name
   contains spaces.
