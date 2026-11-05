@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Added
 - Pushing a `vX.Y.Z` tag also publishes the extension on Open VSX, with trusted publishing (OIDC, no stored token)
+- Highlighting for `INCLUDE LIB "file.cyd"` (includes a library from the library folders), and an `include lib` snippet with the bundled libraries
 
 ## [2.6.1] - 2026-10-31
 

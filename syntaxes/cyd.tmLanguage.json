@@ -134,18 +134,21 @@
 		},
 		"include_directive": {
 			"name": "meta.preprocessor.include.cyd",
-			"match": "(?i)\\b(INCLUDE)(\\s+)([\"'])([^\"']+)(\\3)",
+			"match": "(?i)\\b(INCLUDE)(\\s+)(?:(LIB)(\\s+))?([\"'])([^\"']+)(\\5)",
 			"captures": {
 				"1": {
 					"name": "keyword.control.import.include.cyd"
 				},
 				"3": {
-					"name": "punctuation.definition.string.begin.cyd"
-				},
-				"4": {
-					"name": "string.quoted.other.include.cyd"
+					"name": "keyword.control.import.include.cyd"
 				},
 				"5": {
+					"name": "punctuation.definition.string.begin.cyd"
+				},
+				"6": {
+					"name": "string.quoted.other.include.cyd"
+				},
+				"7": {
 					"name": "punctuation.definition.string.end.cyd"
 				}
 			}

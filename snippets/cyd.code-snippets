@@ -153,6 +153,11 @@
     "body": "INCLUDE \"${1:path/file.cyd}\"",
     "description": "Include another source file at compile time"
   },
+  "INCLUDE LIB library": {
+    "prefix": "include lib",
+    "body": "INCLUDE LIB \"${1|math16_32.cyd,strings.cyd,sprites.cyd,sprites_px.cyd|}\"",
+    "description": "Include a library (looked for in the library folders, such as CYD's lib/)"
+  },
   "IMPORT native routine": {
     "prefix": "import",
     "body": "IMPORT ${1:name} FROM \"${2:path/file.asm}\"",

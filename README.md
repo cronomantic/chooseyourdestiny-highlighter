@@ -28,7 +28,7 @@ Syntax highlighting for [ChooseYourDestiny](https://github.com/cronomantic/Choos
 - Operators: arithmetic, comparison, logical (`AND`, `OR`, `NOT`), bitwise (`&`, `|`, `!`), compound (`+=`, `-=`)
 - Code folding on `[[ ]]` blocks
 - Auto-closing of brackets and code blocks
-- **Snippets** for common constructs (`if`, `ifelse`, `ifelseif`, `while`, `do`, `for`, `forstep`, `select`, `enum`, `swap`, `sub`, `optiongoto`, `optiongosub`, `menu`, `declare`, `dim`, `data`, `wide`, `readloop`, `include`, `import`, `call`, `asm`, `asmexports`, `cydcall`, `block`, `comment`)
+- **Snippets** for common constructs (`if`, `ifelse`, `ifelseif`, `while`, `do`, `for`, `forstep`, `select`, `enum`, `swap`, `sub`, `optiongoto`, `optiongosub`, `menu`, `declare`, `dim`, `data`, `wide`, `readloop`, `include`, `include lib`, `import`, `call`, `asm`, `asmexports`, `cydcall`, `block`, `comment`)
 - **Problem matcher** (`$cyd`) that turns compiler errors and warnings into entries in the Problems panel
 
 ## Installation
