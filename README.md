@@ -105,10 +105,12 @@ above for the full set of prefixes.
 ## Build task and error reporting
 
 The extension contributes a problem matcher named `$cyd` that understands the
-compiler's error and warning format (`ERROR [...]: ... file.cyd:line` and
-`WARNING [...]: ... file.cyd:line`). Add a task to your
-project's `.vscode/tasks.json` so that building surfaces errors directly in the
-Problems panel (adjust the command to how you invoke the compiler):
+compiler's error and warning format, with the place first
+(`ERROR [STAGE] dir/file.cyd:line[:column]: message`, and the same with
+`WARNING`). The path is relative to the project's folder, so open the project's
+folder in VS Code. Add a task to the project's `.vscode/tasks.json` so that
+building surfaces errors directly in the Problems panel (adjust the command to
+where CYD is):
 
 ```json
 {
@@ -117,8 +119,8 @@ Problems panel (adjust the command to how you invoke the compiler):
     {
       "label": "CYD: build",
       "type": "shell",
-      "command": "make_adv",
-      "args": ["48k", "${file}"],
+      "command": "C:/CYD/make_adv.cmd",
+      "args": ["${workspaceFolder}"],
       "group": { "kind": "build", "isDefault": true },
       "problemMatcher": "$cyd"
     }
@@ -126,21 +128,16 @@ Problems panel (adjust the command to how you invoke the compiler):
 }
 ```
 
-Run it with **Terminal → Run Build Task** (`Ctrl+Shift+B`). Any
-`ERROR [...]: ... file.cyd:line` or `WARNING [...]: ... file.cyd:line` printed by the
-compiler becomes a clickable entry in the Problems panel, as an error or a warning.
+Run it with **Terminal → Run Build Task** (`Ctrl+Shift+B`). Every error or warning
+the compiler prints with its place becomes a clickable entry in the Problems panel,
+as an error or a warning, also for included files in other folders and for paths
+with spaces.
 
 ## Language Reference
 
 See the full CYD language manual at:
 - [English Manual](https://github.com/cronomantic/ChooseYourDestiny/blob/main/MANUAL_en.md)
 - [Manual en Español](https://github.com/cronomantic/ChooseYourDestiny/blob/main/MANUAL_es.md)
-
-## Known Issues
-
-- The compiler reports locations by file name only (`file.cyd:12`), so the `$cyd` problem
-  matcher cannot open an included file that lives in another folder, nor a file whose name
-  contains spaces.
 
 ## Release Notes
 

@@ -74,11 +74,12 @@
         ],
         "severity": "error",
         "pattern": {
-          "regexp": "^(ERROR|WARNING) \\[\\w+\\]:\\s*(.*?([A-Za-z0-9_.\\\\/-]+\\.cyd):(\\d+).*)$",
+          "regexp": "^(ERROR|WARNING) \\[\\w+\\] (.+?\\.cyd):(\\d+)(?::(\\d+))?: (.*)$",
           "severity": 1,
-          "message": 2,
-          "file": 3,
-          "line": 4
+          "file": 2,
+          "line": 3,
+          "column": 4,
+          "message": 5
         }
       }
     ]
