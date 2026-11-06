@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [2.7.0] - 2026-11-06
+
+For ChooseYourDestiny 1.7.0: its compiler writes messages in the format the problem matcher now reads.
+
 ### Added
 - Pushing a `vX.Y.Z` tag also publishes the extension on Open VSX, with trusted publishing (OIDC, no stored token)
 - Highlighting for `INCLUDE LIB "file.cyd"` (includes a library from the library folders), and an `include lib` snippet with the bundled libraries
