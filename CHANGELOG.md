@@ -13,6 +13,7 @@ For ChooseYourDestiny 1.7.0: its compiler writes messages in the format the prob
 ### Added
 - Pushing a `vX.Y.Z` tag also publishes the extension on Open VSX, with trusted publishing (OIDC, no stored token)
 - Highlighting for `INCLUDE LIB "file.cyd"` (includes a library from the library folders), and an `include lib` snippet with the bundled libraries
+- Highlighting for `MENUKEY` (changes a menu key) and `MENUJOY` (chooses a Sinclair or cursor joystick)
 
 ### Changed
 - The `$cyd` problem matcher reads the compiler's new message format, with the place first and the path relative to the project (`ERROR [PARSER] dir/my game.cyd:12:5: ...`): it opens included files in other folders and paths with spaces, and takes the column too. The README's build task compiles the project open as the workspace

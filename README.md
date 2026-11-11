@@ -12,7 +12,7 @@ Syntax highlighting for [ChooseYourDestiny](https://github.com/cronomantic/Choos
   - **Assignments**: `SET`, `TO`, `LET`, `SWAP`
   - **Conditionals**: `IF`, `THEN`, `ELSE`, `ELSEIF`, `ENDIF`, `SELECT`, `CASE`, `ENDSELECT`
   - **Loops**: `WHILE`, `WEND`, `DO`, `UNTIL`, `FOR`, `NEXT`, `STEP`
-  - **Options/Menus**: `OPTION`, `CHOOSE`, `MENUCONFIG`, `CLEAROPTIONS`
+  - **Options/Menus**: `OPTION`, `CHOOSE`, `MENUCONFIG`, `MENUKEY`, `MENUJOY`, `CLEAROPTIONS`
   - **Display**: `PRINT`, `CLEAR`, `CENTER`, `AT`, `PICTURE`, `DISPLAY`, `WINDOW`, `BLIT`, etc.
   - **Colors**: `INK`, `PAPER`, `BORDER`, `BRIGHT`, `FLASH`, `FADEOUT`, `FILLATTR`, etc.
   - **Sound**: `SFX`, `TRACK`, `PLAY`, `LOOP`

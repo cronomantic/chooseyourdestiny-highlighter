@@ -418,7 +418,7 @@
 			"name": "keyword.control.loop.cyd"
 		},
 		"keywords_option": {
-			"match": "(?i)\\b(OPTION|CHOOSE|MENUCONFIG|CLEAROPTIONS)\\b",
+			"match": "(?i)\\b(OPTION|CHOOSE|MENUCONFIG|MENUKEY|MENUJOY|CLEAROPTIONS)\\b",
 			"name": "keyword.other.option.cyd"
 		},
 		"keywords_display": {
